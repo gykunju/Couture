@@ -1,0 +1,23 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #9d4edd;
+  --color-primary-hover: #7b2cbf;
+  --color-primary-light: #e0aaff;
+  --color-surface: #ffffff;
+  --color-bg: #fdfafc;
+  --color-text-main: #2b2d42;
+  --color-text-muted: #8d99ae;
+  --color-border: #f2e8f7;
+  --color-success: #38b000;
+  --color-danger: #d90429;
+  --font-family-sans: 'Outfit', 'Inter', system-ui, sans-serif;
+}
+
+/* Base Styles */
+body {
+  background-color: var(--color-bg);
+  background-image: linear-gradient(rgba(253, 250, 252, 0.7), rgba(253, 250, 252, 0.7)), url('/floral-bg.png');
+  background-size: 300px;
+  background-attachment: fixed;
+}

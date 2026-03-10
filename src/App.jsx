@@ -4,6 +4,7 @@ import Discover from './pages/Discover';
 import CustomOrder from './pages/CustomOrder';
 import Receipt from './pages/Receipt';
 import ProductDetails from './pages/ProductDetails';
+import Cart from './pages/Cart';
 import Dashboard from './pages/admin/Dashboard';
 import Inventory from './pages/admin/Inventory';
 import AddProduct from './pages/admin/AddProduct';
@@ -22,6 +23,7 @@ function App() {
             <Route path="/custom-order" element={<CustomOrder />} />
             <Route path="/receipt/:orderId" element={<Receipt />} />
             <Route path="/product/:id" element={<ProductDetails />} />
+            <Route path="/cart" element={<Cart />} />
             
             {/* Admin Routes */}
             <Route path="/admin" element={<Dashboard />} />

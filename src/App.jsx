@@ -5,13 +5,14 @@ import Receipt from './pages/Receipt';
 import Dashboard from './pages/admin/Dashboard';
 import Inventory from './pages/admin/Inventory';
 import AddProduct from './pages/admin/AddProduct';
-import BottomNav from './components/BottomNav';
+import TopNavBar from './components/TopNavBar';
 
 function App() {
   return (
     <Router>
-      <div className="flex flex-col min-h-screen font-sans text-text-main antialiased">
-        <main className="flex-1 px-4 py-6 pb-24 max-w-[1200px] mx-auto w-full">
+      <div className="flex flex-col min-h-screen font-sans text-text-main antialiased bg-gray-50/50">
+        <TopNavBar />
+        <main className="flex-1 px-4 py-4 max-w-[1200px] mx-auto w-full">
           <Routes>
             {/* User Routes */}
             <Route path="/" element={<Home />} />
@@ -24,7 +25,6 @@ function App() {
             <Route path="/admin/inventory/add" element={<AddProduct />} />
           </Routes>
         </main>
-        <BottomNav />
       </div>
     </Router>
   );

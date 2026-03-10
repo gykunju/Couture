@@ -1,27 +1,50 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, ShoppingBag } from 'lucide-react';
+import { ArrowRight, ShoppingBag, Search } from 'lucide-react';
+import first from '/engin-akyurt-Hd4nlxLgIbA-unsplash.jpg';
+import secondImage from '/haryo-setyadi-acn5ERAeSb4-unsplash.jpg'
+import thirdImage from '/santhosh-kumar-RqYTuWkTdEs-unsplash (1).jpg'
 
 export default function Home() {
   const featuredProducts = [
-    { id: 1, name: 'Lilac Dream Crochet Top', price: 45.00, image: 'https://images.unsplash.com/photo-1572804013309-82a89b4f62ac?w=500&auto=format&fit=crop&q=60' },
-    { id: 2, name: 'Silk Petal Wrap Skirt', price: 68.00, image: 'https://plus.unsplash.com/premium_photo-1673356301535-224a0fdaefa9?w=500&auto=format&fit=crop&q=60' },
-    { id: 3, name: 'Rosewater Midi Dress', price: 85.00, image: 'https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?w=500&auto=format&fit=crop&q=60' },
+    { id: 1, name: 'Lilac Dream Crochet Top', price: 45.00, image: first },
+    { id: 2, name: 'Silk Petal Wrap Skirt', price: 68.00, image: secondImage },
+    { id: 3, name: 'Rosewater Midi Dress', price: 85.00, image: thirdImage },
   ];
 
   return (
     <div className="pb-8">
-      {/* Header */}
-      <header className="mb-8 text-center">
-        <h1 className="text-3xl font-bold tracking-tight">Couture Boutique</h1>
-        <p className="text-text-muted">Premium female apparel & custom crochet</p>
-      </header>
+  
+      {/* Search Bar */}
+      <div className="relative mb-6">
+        <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+          <Search className="text-gray-400" size={18} />
+        </div>
+        <input
+          type="text"
+          placeholder="Search trendy tops & custom crochet..."
+          className="w-full pl-11 pr-4 py-3.5 bg-white border border-gray-200 rounded-full text-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 shadow-sm"
+        />
+      </div>
       
       {/* Hero Banner */}
-      <section className="bg-gradient-to-br from-primary-light to-primary rounded-3xl px-6 py-8 text-white mb-8 flex flex-col items-start gap-4">
-        <h2 className="text-2xl font-semibold text-white">Design Your Dream Top</h2>
-        <p className="opacity-90">Get a custom crochet piece tailored just for you in your exact style and measurements.</p>
-        <Link to="/custom-order" className="inline-flex items-center gap-2 bg-white text-primary font-medium px-6 py-3 rounded-full hover:-translate-y-0.5 transition-all duration-200">
-          Order Custom <ArrowRight size={18} />
+      <section 
+        className="relative h-[22rem] rounded-3xl overflow-hidden text-white mb-8 flex flex-col items-center justify-center gap-1 text-center bg-cover bg-center"
+        style={{ backgroundImage: "linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.4)), url('/hero_banner.png')" }}
+      >
+        <span className="text-[10px] md:text-xs font-semibold tracking-[0.15em] uppercase rounded-full border border-white/50 bg-white/20 backdrop-blur-md px-4 py-1 mb-2">
+          Signature Collection
+        </span>
+        <h2 className="text-4xl md:text-5xl font-serif italic font-bold mb-2 drop-shadow-md">
+          Custom Crochet
+        </h2>
+        <p className="text-sm font-light opacity-95 max-w-[280px]">
+          Handcrafted with love. Tailored to your unique style.
+        </p>
+        <Link 
+          to="/custom-order" 
+          className="flex items-center gap-2 mt-4 bg-primary hover:bg-[#d6196f] text-white font-semibold px-8 py-3 rounded-full hover:-translate-y-0.5 transition-all duration-200 shadow-lg"
+        >
+          Order Now <ArrowRight size={30} className='py-1'/>
         </Link>
       </section>
 
@@ -32,9 +55,9 @@ export default function Home() {
           <Link to="/discover" className="text-sm font-medium text-primary">View All</Link>
         </div>
         
-        <div className="grid grid-cols-[repeat(auto-fill,minmax(150px,1fr))] gap-4">
+        <div className="flex gap-4 overflow-x-auto pb-4 snap-x">
           {featuredProducts.map(product => (
-            <div key={product.id} className="bg-white/75 backdrop-blur-xl border border-white/50 rounded-3xl p-3 flex flex-col shadow-sm hover:shadow-md transition-shadow duration-200">
+            <div key={product.id} className="w-64 shrink-0 snap-start border border-white/50 rounded-3xl p-3 flex flex-col shadow-sm hover:shadow-md transition-shadow duration-200">
               <div className="h-40 rounded-xl overflow-hidden mb-3">
                 <img src={product.image} alt={product.name} className="w-full h-full object-cover" />
               </div>

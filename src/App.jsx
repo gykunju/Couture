@@ -1,7 +1,9 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
+import Discover from './pages/Discover';
 import CustomOrder from './pages/CustomOrder';
 import Receipt from './pages/Receipt';
+import ProductDetails from './pages/ProductDetails';
 import Dashboard from './pages/admin/Dashboard';
 import Inventory from './pages/admin/Inventory';
 import AddProduct from './pages/admin/AddProduct';
@@ -16,8 +18,10 @@ function App() {
           <Routes>
             {/* User Routes */}
             <Route path="/" element={<Home />} />
+            <Route path="/discover" element={<Discover />} />
             <Route path="/custom-order" element={<CustomOrder />} />
             <Route path="/receipt/:orderId" element={<Receipt />} />
+            <Route path="/product/:id" element={<ProductDetails />} />
             
             {/* Admin Routes */}
             <Route path="/admin" element={<Dashboard />} />

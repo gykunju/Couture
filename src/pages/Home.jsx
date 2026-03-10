@@ -1,15 +1,11 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, ShoppingBag, Search } from 'lucide-react';
-import first from '/engin-akyurt-Hd4nlxLgIbA-unsplash.jpg';
-import secondImage from '/haryo-setyadi-acn5ERAeSb4-unsplash.jpg'
-import thirdImage from '/santhosh-kumar-RqYTuWkTdEs-unsplash (1).jpg'
+import { products } from '../data/products';
 
 export default function Home() {
-  const featuredProducts = [
-    { id: 1, name: 'Lilac Dream Crochet Top', price: 45.00, image: first },
-    { id: 2, name: 'Silk Petal Wrap Skirt', price: 68.00, image: secondImage },
-    { id: 3, name: 'Rosewater Midi Dress', price: 85.00, image: thirdImage },
-  ];
+  // Get just the first 3 for featured
+  const featuredProducts = products.slice(0, 3);
 
   return (
     <div className="pb-8">
@@ -51,24 +47,41 @@ export default function Home() {
       {/* Featured Products */}
       <section>
         <div className="flex justify-between items-center mb-4">
-          <h2 className="text-xl font-semibold">Trending Now</h2>
+          <h2 className="text-xl font-semibold">New Arrivals</h2>
           <Link to="/discover" className="text-sm font-medium text-primary">View All</Link>
         </div>
         
         <div className="flex gap-4 overflow-x-auto pb-4 snap-x">
           {featuredProducts.map(product => (
-            <div key={product.id} className="w-64 shrink-0 snap-start border border-white/50 rounded-3xl p-3 flex flex-col shadow-sm hover:shadow-md transition-shadow duration-200">
-              <div className="h-40 rounded-xl overflow-hidden mb-3">
-                <img src={product.image} alt={product.name} className="w-full h-full object-cover" />
+            <Link to={`/product/${product.id}`} key={product.id} className="w-64 shrink-0 snap-start border border-white/50 rounded-3xl p-3 flex flex-col hover:shadow-md transition-shadow duration-200">
+              <div className="h-40 rounded-xl overflow-hidden mb-3 relative group">
+                <div className="flex overflow-x-auto snap-x snap-mandatory h-full scrollbar-hide">
+                  {product.images.map((img, idx) => (
+                    <img key={idx} src={img} alt={`${product.name} view ${idx + 1}`} className="w-full h-full object-cover shrink-0 snap-center" />
+                  ))}
+                </div>
+                {/* Visual indicator that there are multiple images */}
+                <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1 z-10 opacity-0 group-hover:opacity-100 transition-opacity bg-black/20 backdrop-blur-sm px-2 py-1 rounded-full pointer-events-none">
+                   {product.images.map((_, i) => (
+                     <div key={i} className="w-1.5 h-1.5 rounded-full bg-white/70" />
+                   ))}
+                </div>
               </div>
-              <h3 className="text-sm font-medium mb-1">{product.name}</h3>
+              <h3 className="text-md font-medium mb-1">{product.name}</h3>
+              <h3 className="text-sm font-medium mb-1">Size {product.size}</h3>
               <div className="flex justify-between items-center mt-auto">
-                <span className="font-semibold text-primary">${product.price.toFixed(2)}</span>
-                <button className="bg-primary-light text-primary w-8 h-8 rounded-full flex items-center justify-center hover:bg-primary hover:text-white transition-colors duration-200">
+                <span className="font-semibold text-primary">Ksh {product.price.toFixed(2)}</span>
+                <button 
+                  onClick={(e) => {
+                    e.preventDefault(); // Prevent navigating to product page when clicking add to cart
+                    // Add to cart logic here
+                  }}
+                  className="bg-primary-light text-primary w-8 h-8 rounded-full flex items-center justify-center hover:bg-primary hover:text-white transition-colors duration-200"
+                >
                   <ShoppingBag size={16} />
                 </button>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </section>
